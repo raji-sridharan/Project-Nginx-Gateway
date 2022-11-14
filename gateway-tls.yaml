@@ -1,0 +1,27 @@
+apiVersion: gateway.networking.k8s.io/v1beta1
+kind: Gateway
+metadata:
+  annotations:
+    nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
+    nginx.ingress.kubernetes.io/from-to-www-redirect: "true"
+    nginx.ingress.kubernetes.io/rewrite-target: /
+  labels:
+    domain: k8s-gateway.nginx.org
+  name: gateway-tls
+  namespace: gateway-api-demo
+spec:
+  gatewayClassName: nginx
+  listeners:
+  - allowedRoutes:
+      namespaces:
+        from: Same
+    hostname: test.apigw-aw-us.webmethods-dev.io
+    name: https
+    port: 443
+    protocol: HTTPS
+    tls:
+      certificateRefs:
+      - group: ""
+        kind: Secret
+        name: coffee-tls-certs
+      mode: Terminate
