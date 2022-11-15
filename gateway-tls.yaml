@@ -15,7 +15,7 @@ spec:
   - allowedRoutes:
       namespaces:
         from: Same
-    hostname: test.apigw-aw-us.webmethods-dev.io
+    hostname: cafe.example.com
     name: https
     port: 443
     protocol: HTTPS
@@ -23,5 +23,5 @@ spec:
       certificateRefs:
       - group: ""
         kind: Secret
-        name: coffee-tls-certs
+        name: cafe-secret
       mode: Terminate
